@@ -75,4 +75,30 @@ public class VarastoTest {
         varasto = new Varasto(-1,-1);
         varasto.toString();
     }
+    
+    @Test
+    public void saldoOikeinKunlisätäänEnemmänKuinTilaa() {
+        varasto.lisaaVarastoon(100);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void saldoNollaJosOtetaanEnemmänKuinSaldoa() {
+        varasto.lisaaVarastoon(10);
+        varasto.otaVarastosta(100);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void saldoEiMuutuJosOtetaanNegatiivinenMäärä() {
+        varasto.lisaaVarastoon(10);
+        varasto.otaVarastosta(-2);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void saldoEiMuutuJosLisätääänNegatiivinenMäärä() {
+        varasto.lisaaVarastoon(-1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
 }
