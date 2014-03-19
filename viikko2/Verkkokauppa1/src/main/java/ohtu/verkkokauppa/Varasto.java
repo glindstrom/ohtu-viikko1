@@ -1,24 +1,14 @@
 package ohtu.verkkokauppa;
 
-import java.util.*;
+import java.util.HashMap;
 
 public class Varasto implements Warehouse {
 
-    private static Varasto instanssi;
-
-    public static Varasto getInstance() {
-        if (instanssi == null) {
-            instanssi = new Varasto();
-        }
-
-        return instanssi;
-    }
-
-    private Kirjanpito kirjanpito;
+    private Accounting kirjanpito;
     private HashMap<Tuote, Integer> saldot;
 
-    private Varasto() {
-        kirjanpito = Kirjanpito.getInstance();
+    public Varasto(Accounting kirjanpito) {
+        this.kirjanpito = kirjanpito;
         saldot = new HashMap<Tuote, Integer>();
         alustaTuotteet();
     }
