@@ -5,7 +5,6 @@ import java.util.List;
 import ohtu.domain.User;
 import org.springframework.stereotype.Component;
 
-@Component
 public class InMemoryUserDao implements UserDao {
 
     private List<User> users;
